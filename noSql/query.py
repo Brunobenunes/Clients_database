@@ -18,7 +18,7 @@ def search_by_cpf(cpf_number):
         return:
             Dados do Cliente cujo CPF foi especificado'''
     find_client = clients_list.find_one({'cpf': cpf_number})
-    if (find_client):
+    if find_client:
         return print(f'''
     Cliente: {find_client['name']}
     CPF: {cpf_number}
