@@ -36,7 +36,7 @@ def search_by_account_number(account_number):
         return:
             Retorna os dados do Cliente, juntando com os dados da Conta'''
     find_client = clients_list.find_one({'accounts.num': account_number})
-    if (find_client):
+    if find_client:
         find_account = [
         account for account in find_client['accounts'] if account['num'] == account_number
         ][0]
