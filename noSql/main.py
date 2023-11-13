@@ -37,3 +37,9 @@ data_list_to_add = [
         ]
     }
 ]
+
+def insert_data(data_list):
+    ''' Função que adiciona dados no documento no banco de Dados'''
+    clients_list.insert_many(data_list)
+
+insert_data(data_list_to_add)
