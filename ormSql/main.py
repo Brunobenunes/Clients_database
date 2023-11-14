@@ -36,7 +36,7 @@ class Client(Base):
         ID: {self.id}
         CPF: {self.cpf}
         Address: {self.address}'''
-    
+
 
 class Account(Base):
     ''' Criando a Tabela account'''
@@ -109,7 +109,7 @@ def search_by_cpf(cpf_number):
     if find_client:
         return find_client[0]
     return f'@@@@ Nenhum Cliente foi encontrando com o CPF: {cpf_number}'
-    
+
 print(search_by_cpf('123.123.123-00'))
 
 def search_by_account_num(account_num):
@@ -124,7 +124,7 @@ def search_by_account_num(account_num):
                          Account.type, Account.branch, Account.num, Account.id_client)
                  .join_from(Account, Client)
                  .where(Account.num.in_([account_num])))
-    
+
     find_client = [
         result for result in connection.execute(join_stmt)
     ]
@@ -141,5 +141,5 @@ def search_by_account_num(account_num):
     Address: {address}
 '''
     return f'@@@@ Nenhuma conta com o número {account_num} foi encontrada! @@@@'
-    
+
 print(search_by_account_num(2))
