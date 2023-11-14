@@ -18,6 +18,7 @@ from sqlalchemy.orm import (
 Base = declarative_base()
 
 class Client(Base):
+    ''' Criando a Tabela client'''
     __tablename__ = 'client'
 
     id = Column(Integer, primary_key=True)
@@ -38,6 +39,7 @@ class Client(Base):
     
 
 class Account(Base):
+    ''' Criando a Tabela account'''
     __tablename__ = 'account'
 
     id = Column(Integer, primary_key=True)
