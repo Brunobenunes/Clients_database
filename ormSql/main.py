@@ -10,9 +10,9 @@ from sqlalchemy import (
 )
 
 from sqlalchemy.orm import (
-    Session
+    Session,
     declarative_base,
-    relationship
+    relationship,
 )
 
 Base = declarative_base()
@@ -91,3 +91,18 @@ with Session(engine) as session:
     session.add_all(data_list_to_add)
     session.commit()
     session.close()
+
+
+def search_by_cpf(cpf_number):
+    ''' Função para procurar no banco de dados o cliente com o CPF especificado
+    params:
+        cpf_number: CPF a ser procurado
+    return: 
+        Retorna dos dados persistidos no banco de dados da pessoa cujo CPF foi especificado
+    '''
+    stmt = select(Client).where(Client.cpf.in_([cpf_number]))
+    for client in session.scalars(stmt):
+        return client
+    
+print(search_by_cpf('123.123.123-00'))
+
