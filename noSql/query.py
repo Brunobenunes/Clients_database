@@ -3,8 +3,7 @@
 import pymongo
 
 client = pymongo.MongoClient(
-    'mongodb+srv://BBpymongoDiO:dio123abc@bankclients.2mxjxjz.mongodb.net/'
-    '?retryWrites=true&w=majority'
+    'Cole aqui o codigo para o conexão do seu banco '
     )
 
 database = client.clients
