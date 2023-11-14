@@ -83,8 +83,10 @@ Mariana = Client(
         num = 2
     )]
 )
-
 data_list_to_add = [Bruno, Mariana]
+
+connection = engine.connect()
+
 with Session(engine) as session:
     session.add_all(data_list_to_add)
     session.commit()
