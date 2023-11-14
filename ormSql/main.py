@@ -10,6 +10,7 @@ from sqlalchemy import (
 )
 
 from sqlalchemy.orm import (
+    Session
     declarative_base,
     relationship
 )
@@ -58,3 +59,6 @@ class Account(Base):
     Branch: {self.branch}'''
 
 
+engine = create_engine('sqlite://')
+
+Base.metadata.create_all(engine)
