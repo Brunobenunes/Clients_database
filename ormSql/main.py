@@ -24,6 +24,10 @@ class Client(Base):
     cpf = Column(String, unique=True, nullable=False)
     address = Column(String, nullable=False)
 
+    account = relationship(
+        'Account', back_populates='client'
+    )
+
     def __repr__(self):
         return f'''
         Cliente: {self.name}
@@ -52,3 +56,5 @@ class Account(Base):
     Client ID: {self.id_client}
     Type: {self.type}
     Branch: {self.branch}'''
+
+
