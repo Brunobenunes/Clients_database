@@ -103,8 +103,43 @@ def search_by_cpf(cpf_number):
         Retorna dos dados persistidos no banco de dados da pessoa cujo CPF foi especificado
     '''
     stmt = select(Client).where(Client.cpf.in_([cpf_number]))
-    for client in session.scalars(stmt):
-        return client
+    find_client = [
+        result for result in session.scalars(stmt)
+    ]
+    if find_client:
+        return find_client[0]
+    return f'@@@@ Nenhum Cliente foi encontrando com o CPF: {cpf_number}'
     
 print(search_by_cpf('123.123.123-00'))
 
+def search_by_account_num(account_num):
+    ''' Função para procurar no banco de dados o cliente com o numero da conta especificado
+    params:
+        account_num: Numero da Conta a ser procurado
+
+    return: Retorna os dados do Cliente e da Conta do numero da conta especificado.
+    
+    '''
+    join_stmt = (select(Client.name, Client.cpf, Client.address,
+                         Account.type, Account.branch, Account.num, Account.id_client)
+                 .join_from(Account, Client)
+                 .where(Account.num.in_([account_num])))
+    
+    find_client = [
+        result for result in connection.execute(join_stmt)
+    ]
+    name, cpf, address, type_account, branch, num, client_id = find_client[0]
+    if find_client:
+        return f'''
+    Conta: {num}
+    Client ID: {client_id}
+    Type: {type_account}
+    Branch: {branch}
+
+    Detalhes do Cliente: {name}
+    CPF: {cpf}
+    Address: {address}
+'''
+    return f'@@@@ Nenhuma conta com o número {account_num} foi encontrada! @@@@'
+    
+print(search_by_account_num(2))
