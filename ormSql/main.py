@@ -62,3 +62,30 @@ class Account(Base):
 engine = create_engine('sqlite://')
 
 Base.metadata.create_all(engine)
+
+
+Bruno = Client(
+    name = 'Bruno',
+    cpf = '123.123.123-00',
+    address = 'Av. Taltaltal, 00',
+    account = [Account(
+        type = 'Conta-Corrente',
+        num = 1
+    )]
+)
+
+Mariana = Client(
+    name = 'Mariana',
+    cpf = '123.123.123-11',
+    address = 'Rua Taltaltal, 00',
+    account = [Account(
+        type = 'Special Account',
+        num = 2
+    )]
+)
+
+data_list_to_add = [Bruno, Mariana]
+with Session(engine) as session:
+    session.add_all(data_list_to_add)
+    session.commit()
+    session.close()
