@@ -2,7 +2,6 @@
 
 Este é o README para a aplicação que cria e interage com bancos de dados MongoDB Atlas e SQLite usando Python e as bibliotecas pymongo e sqlalchemy.
 
-Descrição
 Este projeto foi desenvolvido como parte do desafio da DiO -  Formação Python Developer. Consiste em duas partes distintas:
 
 MongoDB Atlas:
